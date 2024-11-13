@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Encryption App</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container mt-5">
+        <h1 class="text-center">Simple Encryption App</h1>
+        
+        {% with messages = get_flashed_messages() %}
+          {% if messages %}
+            <div class="alert alert-warning" role="alert">
+              {{ messages[0] }}
+            </div>
+          {% endif %}
+        {% endwith %}
+
+        <form method="POST" action="/">
+            <div class="form-group">
+                <label for="text">Text to Encrypt:</label>
+                <input type="text" class="form-control" id="text" name="text" required>
+            </div>
+            <div class="form-group">
+                <label for="shift">Shift Value:</label>
+                <input type="number" class="form-control" id="shift" name="shift" required>
+            </div>
+            <button type="submit" class="btn btn-primary">Encrypt</button>
+        </form>
+
+        {% if encrypted_text %}
+        <hr>
+        <h3>Results</h3>
+        <p><strong>Original Text:</strong> {{ original_text }}</p>
+        <p><strong>Sanitized Text:</strong> {{ sanitized_text }}</p>
+        <p><strong>Encrypted Text:</strong> {{ encrypted_text }}</p>
+        <p><strong>Decrypted Text:</strong> {{ decrypted_text }}</p>
+        <p><strong>Shift Used:</strong> {{ shift }}</p>
+        {% endif %}
+    </div>
+</body>
+</html>
